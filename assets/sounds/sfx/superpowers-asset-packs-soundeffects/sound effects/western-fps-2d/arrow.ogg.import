@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bu1boddw6clq2"
+path="res://.godot/imported/arrow.ogg-8b6ddbb587cf50248989469a5d3dff1e.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sounds/sfx/superpowers-asset-packs-soundeffects/sound effects/western-fps-2d/arrow.ogg"
+dest_files=["res://.godot/imported/arrow.ogg-8b6ddbb587cf50248989469a5d3dff1e.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

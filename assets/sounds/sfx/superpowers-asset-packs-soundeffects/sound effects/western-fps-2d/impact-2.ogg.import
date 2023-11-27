@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bixo4vckj0hix"
+path="res://.godot/imported/impact-2.ogg-b4fa3572aaaf14d2c16c5ccb5416b954.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sounds/sfx/superpowers-asset-packs-soundeffects/sound effects/western-fps-2d/impact-2.ogg"
+dest_files=["res://.godot/imported/impact-2.ogg-b4fa3572aaaf14d2c16c5ccb5416b954.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

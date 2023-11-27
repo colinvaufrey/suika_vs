@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cvstc7q71qxlv"
+path="res://.godot/imported/boss-death.wav-53d6d57b1240f2101807a2a77c642feb.sample"
+
+[deps]
+
+source_file="res://assets/sounds/sfx/superpowers-asset-packs-soundeffects/sound effects/space-shooter/boss-death.wav"
+dest_files=["res://.godot/imported/boss-death.wav-53d6d57b1240f2101807a2a77c642feb.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

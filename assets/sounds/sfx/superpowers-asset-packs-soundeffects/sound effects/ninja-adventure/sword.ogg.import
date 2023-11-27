@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://7v6jsdjmwwmp"
+path="res://.godot/imported/sword.ogg-5a622a4f15a5471596ff6590e73ff7ad.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sounds/sfx/superpowers-asset-packs-soundeffects/sound effects/ninja-adventure/sword.ogg"
+dest_files=["res://.godot/imported/sword.ogg-5a622a4f15a5471596ff6590e73ff7ad.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,85 @@
+[gd_scene load_steps=15 format=3 uid="uid://bpxyj3n11b02d"]
+
+[ext_resource type="Texture2D" uid="uid://58c4l11shp8y" path="res://icon.svg" id="1_tvk3e"]
+[ext_resource type="PackedScene" uid="uid://rnt0xm0xuqmv" path="res://scenes/fruit_holder.tscn" id="1_umocq"]
+[ext_resource type="Script" path="res://scenes/game.gd" id="1_vjm0s"]
+[ext_resource type="Script" path="res://scripts/music_player.gd" id="4_mwyjm"]
+[ext_resource type="AudioStream" uid="uid://7ao7x0gr47n0" path="res://assets/sounds/music/gnossienne_1.ogg" id="5_4lrph"]
+[ext_resource type="AudioStream" uid="uid://pe0lw7vuplsu" path="res://assets/sounds/music/gnossienne_2.ogg" id="6_cwyu7"]
+[ext_resource type="AudioStream" uid="uid://bo1so2jycyjla" path="res://assets/sounds/music/gnossienne_3.ogg" id="7_jmxp7"]
+[ext_resource type="AudioStream" uid="uid://d0hfqn8nlpmk2" path="res://assets/sounds/music/gnossienne_4.ogg" id="8_c0gto"]
+[ext_resource type="AudioStream" uid="uid://b127kcnrxs3cy" path="res://assets/sounds/music/gnossienne_5.ogg" id="9_hprul"]
+[ext_resource type="AudioStream" uid="uid://bvn6ocxrbdm8j" path="res://assets/sounds/music/gnossienne_6.ogg" id="10_e2rye"]
+[ext_resource type="AudioStream" uid="uid://dk4qku1s7npxo" path="res://assets/sounds/music/gnossienne_7.ogg" id="11_45sh4"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_f6h67"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uoffe"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_swj7b"]
+
+[node name="Game" type="Node"]
+script = ExtResource("1_vjm0s")
+
+[node name="BackgroundLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="BackgroundLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.878431, 0.764706, 0.588235, 1)
+
+[node name="2DLayer" type="CanvasLayer" parent="."]
+
+[node name="World2D" type="Node2D" parent="2DLayer"]
+
+[node name="FruitHolder" parent="2DLayer/World2D" instance=ExtResource("1_umocq")]
+position = Vector2(456, 128)
+speed = 0.5
+
+[node name="Container" type="StaticBody2D" parent="2DLayer/World2D"]
+position = Vector2(992, 584)
+
+[node name="WallLeft" type="CollisionShape2D" parent="2DLayer/World2D/Container"]
+position = Vector2(-312, -3.05176e-05)
+shape = SubResource("WorldBoundaryShape2D_f6h67")
+
+[node name="Sprite2D" type="Sprite2D" parent="2DLayer/World2D/Container/WallLeft"]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(-11.9999, -2)
+scale = Vector2(0.182132, 7.81897)
+texture = ExtResource("1_tvk3e")
+
+[node name="WallRight" type="CollisionShape2D" parent="2DLayer/World2D/Container"]
+position = Vector2(336, -16)
+shape = SubResource("WorldBoundaryShape2D_uoffe")
+
+[node name="Sprite2D2" type="Sprite2D" parent="2DLayer/World2D/Container/WallRight"]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(11.9999, -16)
+scale = Vector2(0.182132, 7.25897)
+texture = ExtResource("1_tvk3e")
+
+[node name="WallBottom" type="CollisionShape2D" parent="2DLayer/World2D/Container"]
+position = Vector2(16, 328)
+shape = SubResource("WorldBoundaryShape2D_swj7b")
+
+[node name="Sprite2D3" type="Sprite2D" parent="2DLayer/World2D/Container/WallBottom"]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(-1, 12)
+rotation = 1.5708
+scale = Vector2(0.182132, 7.45897)
+texture = ExtResource("1_tvk3e")
+
+[node name="Fruits" type="Node" parent="2DLayer/World2D"]
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"Music"
+script = ExtResource("4_mwyjm")
+_songs = Array[AudioStream]([ExtResource("5_4lrph"), ExtResource("6_cwyu7"), ExtResource("7_jmxp7"), ExtResource("8_c0gto"), ExtResource("9_hprul"), ExtResource("10_e2rye"), ExtResource("11_45sh4")])
+
+[connection signal="finished" from="MusicPlayer" to="MusicPlayer" method="_on_finished"]

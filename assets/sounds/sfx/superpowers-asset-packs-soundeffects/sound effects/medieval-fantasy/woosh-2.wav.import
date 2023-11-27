@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://vsffowmbtd7d"
+path="res://.godot/imported/woosh-2.wav-79e4de19a595fe727add0e1b6f12268f.sample"
+
+[deps]
+
+source_file="res://assets/sounds/sfx/superpowers-asset-packs-soundeffects/sound effects/medieval-fantasy/woosh-2.wav"
+dest_files=["res://.godot/imported/woosh-2.wav-79e4de19a595fe727add0e1b6f12268f.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

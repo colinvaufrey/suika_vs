@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dydsxidkuv1ia"
+path="res://.godot/imported/woosh-1.ogg-28a6eaabc18194c6e6d98e352e7853ac.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sounds/sfx/superpowers-asset-packs-soundeffects/sound effects/western-fps-2d/woosh-1.ogg"
+dest_files=["res://.godot/imported/woosh-1.ogg-28a6eaabc18194c6e6d98e352e7853ac.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

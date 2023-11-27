@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://v2ufumgxm3ca"
+path="res://.godot/imported/glass-breaking-2.ogg-90e4e6568b99ef81e77699d237b719ab.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sounds/sfx/superpowers-asset-packs-soundeffects/sound effects/western-fps-2d/glass-breaking-2.ogg"
+dest_files=["res://.godot/imported/glass-breaking-2.ogg-90e4e6568b99ef81e77699d237b719ab.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

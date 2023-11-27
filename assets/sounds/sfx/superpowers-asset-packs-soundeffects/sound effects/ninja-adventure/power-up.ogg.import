@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://crt88q6mucvyk"
+path="res://.godot/imported/power-up.ogg-e2a04e0e8c5cee0612750efe6931c3db.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sounds/sfx/superpowers-asset-packs-soundeffects/sound effects/ninja-adventure/power-up.ogg"
+dest_files=["res://.godot/imported/power-up.ogg-e2a04e0e8c5cee0612750efe6931c3db.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

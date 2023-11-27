@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://8q1eg2j4oca0"
+path="res://.godot/imported/raven-1.ogg-fb68f07b11864fea00db873071ee18aa.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sounds/sfx/superpowers-asset-packs-soundeffects/sound effects/western-fps-2d/raven-1.ogg"
+dest_files=["res://.godot/imported/raven-1.ogg-fb68f07b11864fea00db873071ee18aa.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

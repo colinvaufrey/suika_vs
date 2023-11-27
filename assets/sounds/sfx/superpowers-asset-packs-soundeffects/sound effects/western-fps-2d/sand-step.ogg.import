@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cfcrqlar36jqq"
+path="res://.godot/imported/sand-step.ogg-b22a2844c890f776a3cb543a655629bf.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sounds/sfx/superpowers-asset-packs-soundeffects/sound effects/western-fps-2d/sand-step.ogg"
+dest_files=["res://.godot/imported/sand-step.ogg-b22a2844c890f776a3cb543a655629bf.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
