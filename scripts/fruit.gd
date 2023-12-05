@@ -14,6 +14,8 @@ var _fusing_progress: float = 0.0
 var _fruit_resource: FruitResource = null
 var _default_sprite_scale: float = 1.0
 
+signal merged(score: int)
+
 func _ready() -> void:
 	_default_sprite_scale = _sprite.scale.x
 	set_fruit_type(fruit_type)
@@ -82,6 +84,7 @@ func fuse_with(other_fruit: Fruit) -> void:
 	transition_fruit_type(fruit_type + 1)
 	fuse_priority = other_fruit.fuse_priority
 	other_fruit.disappear_into(self)
+	emit_signal("merged", _fruit_resource.score_value)
 
 
 func set_collision_enabled(state: bool) -> void:

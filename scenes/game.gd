@@ -6,7 +6,10 @@ extends Node
 @onready var fruits_container: Node = $"2DLayer/World2D/Fruits"
 @onready var music_player: MusicPlayer = $MusicPlayer
 
+@onready var score_label: RichTextLabel = $UILayer/Control/ScoreLabel
+
 var fruits_spawned: int = 0
+var score: int = 0
 
 func _ready() -> void:
 	randomize()
@@ -26,5 +29,11 @@ func _generate_new_fruit() -> void:
 func _on_fruit_holder_released(fruit: Fruit, position: Vector2) -> void:
 	fruit.get_parent().remove_child(fruit)
 	fruits_container.add_child(fruit)
+	fruit.connect("merged", _increase_score)
 	fruit.global_position = position
 	_generate_new_fruit()
+
+
+func _increase_score(value: int) -> void:
+	score += value
+	score_label.text = "Score : %d" % score

@@ -82,4 +82,24 @@ bus = &"Music"
 script = ExtResource("4_mwyjm")
 _songs = Array[AudioStream]([ExtResource("5_4lrph"), ExtResource("6_cwyu7"), ExtResource("7_jmxp7"), ExtResource("8_c0gto"), ExtResource("9_hprul"), ExtResource("10_e2rye"), ExtResource("11_45sh4")])
 
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="UILayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScoreLabel" type="RichTextLabel" parent="UILayer/Control"]
+layout_mode = 0
+offset_right = 83.0
+offset_bottom = 23.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 64
+text = "Score : ×××"
+fit_content = true
+autowrap_mode = 0
+
 [connection signal="finished" from="MusicPlayer" to="MusicPlayer" method="_on_finished"]
