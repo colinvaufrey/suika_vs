@@ -6,8 +6,8 @@ class_name FruitHolder
 @onready var _holder: PathFollow2D = $Holder
 
 var _held_fruit: Fruit = null
-var left_x: int
-var right_x: int
+var left_x: float
+var right_x: float
 
 signal fruit_released(fruit: Fruit, position: Vector2)
 
@@ -36,6 +36,5 @@ func release_held_fruit() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
-		if event.position.x >= left_x and event.position.x <= right_x:
-			_holder.progress = event.position.x - left_x
-
+		var progress: float = event.position.x - left_x
+		_holder.progress = clampf(progress, 0, right_x - left_x)
