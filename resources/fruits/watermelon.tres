@@ -8,5 +8,5 @@ script = ExtResource("1_v8jmv")
 name = "Watermelon"
 texture = ExtResource("2_pbql1")
 collision_polygon = PackedVector2Array(0, -229, -50, -225, -102, -206, -143, -181, -183, -139, -212, -88, -228, -31, -228, 29, -216, 79, -194, 123, -163, 163, -126, 192, -76, 218, -4, 230, 55, 224, 115, 199, 163, 163, 199, 115, 224, 56, 230, -12, 217, -75, 189, -130, 150, -175, 108, -205, 54, -224)
-size_modifer = 11.0
+size_modifer = 15.0
 score_value = 1

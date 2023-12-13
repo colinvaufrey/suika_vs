@@ -4,7 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://cfxwjtsw5fm15" path="res://assets/images/fruits/cherries.png" id="2_l11sc"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fspy0"]
-friction = 0.9
+friction = 0.77
+bounce = 0.1
 
 [node name="Fruit" type="RigidBody2D"]
 physics_material_override = SubResource("PhysicsMaterial_fspy0")

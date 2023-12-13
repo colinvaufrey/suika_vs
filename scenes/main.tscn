@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://bpxyj3n11b02d"]
+[gd_scene load_steps=21 format=3 uid="uid://bpxyj3n11b02d"]
 
 [ext_resource type="Texture2D" uid="uid://58c4l11shp8y" path="res://icon.svg" id="1_tvk3e"]
 [ext_resource type="PackedScene" uid="uid://rnt0xm0xuqmv" path="res://scenes/fruit_holder.tscn" id="1_umocq"]
-[ext_resource type="Script" path="res://scenes/game.gd" id="1_vjm0s"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_vjm0s"]
+[ext_resource type="Script" path="res://scripts/game_over_area.gd" id="4_fqv45"]
 [ext_resource type="Script" path="res://scripts/music_player.gd" id="4_mwyjm"]
 [ext_resource type="AudioStream" uid="uid://7ao7x0gr47n0" path="res://assets/sounds/music/gnossienne_1.ogg" id="5_4lrph"]
 [ext_resource type="AudioStream" uid="uid://pe0lw7vuplsu" path="res://assets/sounds/music/gnossienne_2.ogg" id="6_cwyu7"]
@@ -11,6 +12,8 @@
 [ext_resource type="AudioStream" uid="uid://b127kcnrxs3cy" path="res://assets/sounds/music/gnossienne_5.ogg" id="9_hprul"]
 [ext_resource type="AudioStream" uid="uid://bvn6ocxrbdm8j" path="res://assets/sounds/music/gnossienne_6.ogg" id="10_e2rye"]
 [ext_resource type="AudioStream" uid="uid://dk4qku1s7npxo" path="res://assets/sounds/music/gnossienne_7.ogg" id="11_45sh4"]
+[ext_resource type="Texture2D" uid="uid://cfxwjtsw5fm15" path="res://assets/images/fruits/cherries.png" id="13_n83sb"]
+[ext_resource type="Script" path="res://scenes/next_fruit_ui.gd" id="13_y40ue"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_f6h67"]
 normal = Vector2(1, 0)
@@ -19,6 +22,17 @@ normal = Vector2(1, 0)
 normal = Vector2(-1, 0)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_swj7b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8m28s"]
+size = Vector2(685, 200)
+
+[sub_resource type="SystemFont" id="SystemFont_nwwkn"]
+font_names = PackedStringArray("Arial")
+
+[sub_resource type="LabelSettings" id="LabelSettings_mnywk"]
+font = SubResource("SystemFont_nwwkn")
+font_size = 32
+font_color = Color(0, 0, 0, 1)
 
 [node name="Game" type="Node"]
 script = ExtResource("1_vjm0s")
@@ -75,6 +89,13 @@ rotation = 1.5708
 scale = Vector2(0.182132, 7.45897)
 texture = ExtResource("1_tvk3e")
 
+[node name="GameOverArea" type="Area2D" parent="2DLayer/World2D/Container"]
+script = ExtResource("4_fqv45")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="2DLayer/World2D/Container/GameOverArea"]
+position = Vector2(12.5, -481)
+shape = SubResource("RectangleShape2D_8m28s")
+
 [node name="Fruits" type="Node" parent="2DLayer/World2D"]
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
@@ -83,6 +104,12 @@ script = ExtResource("4_mwyjm")
 _songs = Array[AudioStream]([ExtResource("5_4lrph"), ExtResource("6_cwyu7"), ExtResource("7_jmxp7"), ExtResource("8_c0gto"), ExtResource("9_hprul"), ExtResource("10_e2rye"), ExtResource("11_45sh4")])
 
 [node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="MainMenu" type="Control" parent="UILayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="Control" type="Control" parent="UILayer"]
 layout_mode = 3
@@ -102,4 +129,30 @@ text = "Score : ×××"
 fit_content = true
 autowrap_mode = 0
 
+[node name="NextFruitUI" type="VBoxContainer" parent="UILayer/Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -273.0
+offset_top = 116.0
+offset_right = -166.0
+offset_bottom = 263.0
+grow_horizontal = 0
+script = ExtResource("13_y40ue")
+
+[node name="NextFruitLabel" type="Label" parent="UILayer/Control/NextFruitUI"]
+layout_mode = 2
+text = "Suivant"
+label_settings = SubResource("LabelSettings_mnywk")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NextFruitTexture" type="TextureRect" parent="UILayer/Control/NextFruitUI"]
+layout_mode = 2
+texture = ExtResource("13_n83sb")
+expand_mode = 5
+stretch_mode = 5
+
+[connection signal="fruit_overlaps" from="2DLayer/World2D/Container/GameOverArea" to="." method="_on_game_over_area_fruit_overlaps"]
 [connection signal="finished" from="MusicPlayer" to="MusicPlayer" method="_on_finished"]

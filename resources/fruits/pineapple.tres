@@ -8,5 +8,5 @@ script = ExtResource("1_hqoj3")
 name = "Pineapple"
 texture = ExtResource("2_58xlh")
 collision_polygon = PackedVector2Array(-16, -106, -55, -90, -89, -59, -110, -10, -122, 56, -119, 116, -106, 171, -77, 206, -36, 225, 26, 226, 57, 218, 92, 194, 111, 154, 122, 101, 118, 25, 105, -29, 74, -79, 30, -103)
-size_modifer = 10.0
+size_modifer = 13.0
 score_value = 1

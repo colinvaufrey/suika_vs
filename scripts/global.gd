@@ -1,6 +1,8 @@
 extends Node
 
-var fruit_base_size_factor := 0.07
+const FRUIT_ENABLES_GAME_OVER_TIMER: float = 1.5
+
+const FRUIT_BASE_SIZE_FACTOR := 0.07
 
 var fruit_resources: Array[FruitResource] = [
 	preload("res://resources/fruits/cherries.tres"),

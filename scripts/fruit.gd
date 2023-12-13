@@ -8,6 +8,7 @@ class_name Fruit
 
 var fuse_priority: int = 0
 var currently_fusing: bool = false
+var triggers_game_over: bool = false
 
 var _fruit_to_fuse_into: Fruit = null
 var _fusing_progress: float = 0.0
@@ -26,8 +27,8 @@ func set_fruit_type(new_type: int) -> void:
 	_fruit_resource = Global.fruit_resources[fruit_type]
 	_sprite.texture = _fruit_resource.texture
 	_collision.polygon = _fruit_resource.collision_polygon
-	var target_sprite_scale := Global.fruit_base_size_factor * Vector2(_default_sprite_scale * _fruit_resource.size_modifer, _default_sprite_scale * _fruit_resource.size_modifer)
-	var target_collision_scale := Global.fruit_base_size_factor * Vector2(_fruit_resource.size_modifer, _fruit_resource.size_modifer)
+	var target_sprite_scale := Global.FRUIT_BASE_SIZE_FACTOR * Vector2(_default_sprite_scale * _fruit_resource.size_modifer, _default_sprite_scale * _fruit_resource.size_modifer)
+	var target_collision_scale := Global.FRUIT_BASE_SIZE_FACTOR * Vector2(_fruit_resource.size_modifer, _fruit_resource.size_modifer)
 	_sprite.scale = target_sprite_scale
 	_collision.scale = target_collision_scale
 
@@ -38,8 +39,8 @@ func transition_fruit_type(new_type: int) -> void:
 	_sprite.texture = _fruit_resource.texture
 	_collision.polygon = _fruit_resource.collision_polygon
 	var scale_tween := get_tree().create_tween()
-	var target_sprite_scale := Global.fruit_base_size_factor * Vector2(_default_sprite_scale * _fruit_resource.size_modifer, _default_sprite_scale * _fruit_resource.size_modifer)
-	var target_collision_scale := Global.fruit_base_size_factor * Vector2(_fruit_resource.size_modifer, _fruit_resource.size_modifer)
+	var target_sprite_scale := Global.FRUIT_BASE_SIZE_FACTOR * Vector2(_default_sprite_scale * _fruit_resource.size_modifer, _default_sprite_scale * _fruit_resource.size_modifer)
+	var target_collision_scale := Global.FRUIT_BASE_SIZE_FACTOR * Vector2(_fruit_resource.size_modifer, _fruit_resource.size_modifer)
 	scale_tween.tween_property(_sprite, "scale", target_sprite_scale, 1).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_IN_OUT)
 	await scale_tween.parallel().tween_property(_collision, "scale" ,target_collision_scale, 1).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_IN_OUT).finished
 	currently_fusing = false
@@ -90,3 +91,9 @@ func fuse_with(other_fruit: Fruit) -> void:
 func set_collision_enabled(state: bool) -> void:
 	_collision.disabled = !state
 	set_freeze_enabled(!state)
+
+
+func start_game_over_trigger_timer() -> void:
+	get_tree().create_timer(Global.FRUIT_ENABLES_GAME_OVER_TIMER).timeout.connect(func():
+		triggers_game_over = true
+	)

@@ -31,6 +31,7 @@ func set_held_fruit(fruit: Fruit) -> void:
 
 func release_held_fruit() -> void:
 	_held_fruit.set_collision_enabled(true)
+	_held_fruit.start_game_over_trigger_timer()
 	fruit_released.emit(_held_fruit, _holder.global_position)
 
 

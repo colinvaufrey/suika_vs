@@ -8,5 +8,5 @@ script = ExtResource("1_n0cnm")
 name = "Lemon"
 texture = ExtResource("2_xqq6s")
 collision_polygon = PackedVector2Array(141, -147, -37, -173, -160, -120, -240, -26, -254, 81, -233, 224, -66, 250, 59, 215, 142, 113, 163, 17, 141, -78)
-size_modifer = 3.75
+size_modifer = 4.0
 score_value = 1
