@@ -1,9 +1,5 @@
-[gd_scene load_steps=21 format=3 uid="uid://bpxyj3n11b02d"]
+[gd_scene load_steps=15 format=3 uid="uid://bpxyj3n11b02d"]
 
-[ext_resource type="Texture2D" uid="uid://58c4l11shp8y" path="res://icon.svg" id="1_tvk3e"]
-[ext_resource type="PackedScene" uid="uid://rnt0xm0xuqmv" path="res://scenes/fruit_holder.tscn" id="1_umocq"]
-[ext_resource type="Script" path="res://scripts/game.gd" id="1_vjm0s"]
-[ext_resource type="Script" path="res://scripts/game_over_area.gd" id="4_fqv45"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_vjm0s"]
 [ext_resource type="PackedScene" uid="uid://cenngwt8rjvkt" path="res://scenes/board.tscn" id="2_db4ad"]
 [ext_resource type="Script" path="res://scripts/music_player.gd" id="4_mwyjm"]
@@ -14,8 +10,6 @@
 [ext_resource type="AudioStream" uid="uid://b127kcnrxs3cy" path="res://assets/sounds/music/gnossienne_5.ogg" id="9_hprul"]
 [ext_resource type="AudioStream" uid="uid://bvn6ocxrbdm8j" path="res://assets/sounds/music/gnossienne_6.ogg" id="10_e2rye"]
 [ext_resource type="AudioStream" uid="uid://dk4qku1s7npxo" path="res://assets/sounds/music/gnossienne_7.ogg" id="11_45sh4"]
-[ext_resource type="Texture2D" uid="uid://cfxwjtsw5fm15" path="res://assets/images/fruits/cherries.png" id="13_n83sb"]
-[ext_resource type="Script" path="res://scenes/next_fruit_ui.gd" id="13_y40ue"]
 
 [sub_resource type="SystemFont" id="SystemFont_0twv3"]
 font_names = PackedStringArray("Arial")
@@ -37,17 +31,6 @@ font_weight = 800
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xqm1y"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8m28s"]
-size = Vector2(685, 200)
-
-[sub_resource type="SystemFont" id="SystemFont_nwwkn"]
-font_names = PackedStringArray("Arial")
-
-[sub_resource type="LabelSettings" id="LabelSettings_mnywk"]
-font = SubResource("SystemFont_nwwkn")
-font_size = 32
-font_color = Color(0, 0, 0, 1)
-
 [node name="Game" type="Node"]
 script = ExtResource("1_vjm0s")
 
@@ -63,54 +46,6 @@ color = Color(0.878431, 0.764706, 0.588235, 1)
 
 [node name="2DLayer" type="CanvasLayer" parent="."]
 
-[node name="World2D" type="Node2D" parent="2DLayer"]
-
-[node name="FruitHolder" parent="2DLayer/World2D" instance=ExtResource("1_umocq")]
-position = Vector2(456, 128)
-speed = 0.5
-
-[node name="Container" type="StaticBody2D" parent="2DLayer/World2D"]
-position = Vector2(992, 584)
-
-[node name="WallLeft" type="CollisionShape2D" parent="2DLayer/World2D/Container"]
-position = Vector2(-312, -3.05176e-05)
-shape = SubResource("WorldBoundaryShape2D_f6h67")
-
-[node name="Sprite2D" type="Sprite2D" parent="2DLayer/World2D/Container/WallLeft"]
-self_modulate = Color(0, 0, 0, 1)
-position = Vector2(-11.9999, -2)
-scale = Vector2(0.182132, 7.81897)
-texture = ExtResource("1_tvk3e")
-
-[node name="WallRight" type="CollisionShape2D" parent="2DLayer/World2D/Container"]
-position = Vector2(336, -16)
-shape = SubResource("WorldBoundaryShape2D_uoffe")
-
-[node name="Sprite2D2" type="Sprite2D" parent="2DLayer/World2D/Container/WallRight"]
-self_modulate = Color(0, 0, 0, 1)
-position = Vector2(11.9999, -16)
-scale = Vector2(0.182132, 7.25897)
-texture = ExtResource("1_tvk3e")
-
-[node name="WallBottom" type="CollisionShape2D" parent="2DLayer/World2D/Container"]
-position = Vector2(16, 328)
-shape = SubResource("WorldBoundaryShape2D_swj7b")
-
-[node name="Sprite2D3" type="Sprite2D" parent="2DLayer/World2D/Container/WallBottom"]
-self_modulate = Color(0, 0, 0, 1)
-position = Vector2(-1, 12)
-rotation = 1.5708
-scale = Vector2(0.182132, 7.45897)
-texture = ExtResource("1_tvk3e")
-
-[node name="GameOverArea" type="Area2D" parent="2DLayer/World2D/Container"]
-script = ExtResource("4_fqv45")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="2DLayer/World2D/Container/GameOverArea"]
-position = Vector2(12.5, -481)
-shape = SubResource("RectangleShape2D_8m28s")
-
-[node name="Fruits" type="Node" parent="2DLayer/World2D"]
 [node name="Board" parent="2DLayer" instance=ExtResource("2_db4ad")]
 position = Vector2(960, 540)
 
@@ -121,13 +56,6 @@ _songs = Array[AudioStream]([ExtResource("5_4lrph"), ExtResource("6_cwyu7"), Ext
 
 [node name="UILayer" type="CanvasLayer" parent="."]
 
-[node name="MainMenu" type="Control" parent="UILayer"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Control" type="Control" parent="UILayer"]
 [node name="InGameUI" type="Control" parent="UILayer"]
 layout_mode = 3
 anchors_preset = 15
@@ -146,32 +74,6 @@ text = "Score : ×××"
 fit_content = true
 autowrap_mode = 0
 
-[node name="NextFruitUI" type="VBoxContainer" parent="UILayer/Control"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -273.0
-offset_top = 116.0
-offset_right = -166.0
-offset_bottom = 263.0
-grow_horizontal = 0
-script = ExtResource("13_y40ue")
-
-[node name="NextFruitLabel" type="Label" parent="UILayer/Control/NextFruitUI"]
-layout_mode = 2
-text = "Suivant"
-label_settings = SubResource("LabelSettings_mnywk")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="NextFruitTexture" type="TextureRect" parent="UILayer/Control/NextFruitUI"]
-layout_mode = 2
-texture = ExtResource("13_n83sb")
-expand_mode = 5
-stretch_mode = 5
-
-[connection signal="fruit_overlaps" from="2DLayer/World2D/Container/GameOverArea" to="." method="_on_game_over_area_fruit_overlaps"]
 [node name="Menu" type="Control" parent="UILayer"]
 visible = false
 layout_mode = 3

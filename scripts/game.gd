@@ -2,12 +2,12 @@ extends Node
 
 @export var fruit_scene: PackedScene = preload("res://scenes/fruit.tscn")
 
-@onready var fruit_holder: FruitHolder = $"2DLayer/World2D/FruitHolder"
-@onready var fruits_container: Node = $"2DLayer/World2D/Fruits"
+@onready var fruit_holder: FruitHolder = $"2DLayer/Board/FruitHolder"
+@onready var fruits_container: Node = $"2DLayer/Board/Fruits"
 @onready var music_player: MusicPlayer = $MusicPlayer
 
-@onready var score_label: RichTextLabel = $UILayer/Control/ScoreLabel
 @onready var next_fruit_ui: NextFruitUI = $UILayer/Control/NextFruitUI
+@onready var score_label: RichTextLabel = $UILayer/InGameUI/ScoreLabel
 
 var fruits_spawned: int = 0
 var score: int = 0
@@ -45,7 +45,7 @@ func _increase_score(value: int) -> void:
 
 
 func _update_score_label() -> void:
-	score_label.text = "Score : %d" % score
+	score_label.text = "Score : %d" % score
 
 
 func _on_game_over_area_fruit_overlaps(fruit: Fruit) -> void:

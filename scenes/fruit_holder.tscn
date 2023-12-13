@@ -5,7 +5,7 @@
 
 [sub_resource type="Curve2D" id="Curve2D_ciljw"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 232, 0, 0, 0, 0, 0, 864, 0)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 624, 0)
 }
 point_count = 2
 
@@ -14,7 +14,6 @@ curve = SubResource("Curve2D_ciljw")
 script = ExtResource("1_grkkm")
 
 [node name="Holder" type="PathFollow2D" parent="."]
-position = Vector2(232, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Holder"]
 scale = Vector2(0.11, 0.11)

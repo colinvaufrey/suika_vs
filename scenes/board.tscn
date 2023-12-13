@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://cenngwt8rjvkt"]
+
+[ext_resource type="PackedScene" uid="uid://rnt0xm0xuqmv" path="res://scenes/fruit_holder.tscn" id="1_nq72x"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_f6h67"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uoffe"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_swj7b"]
+
+[node name="Container" type="StaticBody2D"]
+
+[node name="WallLeft" type="CollisionShape2D" parent="."]
+position = Vector2(-320, 3.05176e-05)
+shape = SubResource("WorldBoundaryShape2D_f6h67")
+
+[node name="WallRight" type="CollisionShape2D" parent="."]
+position = Vector2(320, 0)
+shape = SubResource("WorldBoundaryShape2D_uoffe")
+
+[node name="WallBottom" type="CollisionShape2D" parent="."]
+position = Vector2(0, 448)
+shape = SubResource("WorldBoundaryShape2D_swj7b")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -320.0
+offset_top = -448.0
+offset_right = 320.0
+offset_bottom = 448.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(320, 448)
+color = Color(0, 0, 0, 0.247059)
+
+[node name="FruitHolder" parent="." instance=ExtResource("1_nq72x")]
+position = Vector2(-312, -480)
+speed = 0.5
+
+[node name="Fruits" type="Node" parent="."]
