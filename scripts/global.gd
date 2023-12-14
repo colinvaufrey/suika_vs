@@ -1,6 +1,7 @@
 extends Node
 
 const FRUIT_ENABLES_GAME_OVER_TIMER: float = 1.5
+const FRUIT_MERGE_ANIMATION_DURATION: float = 0.5
 
 const FRUIT_BASE_SIZE_FACTOR := 0.07
 

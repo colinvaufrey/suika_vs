@@ -6,12 +6,12 @@ class_name Fruit
 @onready var _sprite: Sprite2D = $Sprite
 @onready var _collision: CollisionPolygon2D = $Collision
 
-var fuse_priority: int = 0
-var currently_fusing: bool = false
+var merge_priority: int = 0
+var currently_merging: bool = false
 var triggers_game_over: bool = false
 
-var _fruit_to_fuse_into: Fruit = null
-var _fusing_progress: float = 0.0
+var _fruit_to_merge_into: Fruit = null
+var _merging_progress: float = 0.0
 var _fruit_resource: FruitResource = null
 var _default_sprite_scale: float = 1.0
 
@@ -41,9 +41,9 @@ func transition_fruit_type(new_type: int) -> void:
 	var scale_tween := get_tree().create_tween()
 	var target_sprite_scale := Global.FRUIT_BASE_SIZE_FACTOR * Vector2(_default_sprite_scale * _fruit_resource.size_modifer, _default_sprite_scale * _fruit_resource.size_modifer)
 	var target_collision_scale := Global.FRUIT_BASE_SIZE_FACTOR * Vector2(_fruit_resource.size_modifer, _fruit_resource.size_modifer)
-	scale_tween.tween_property(_sprite, "scale", target_sprite_scale, 1).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_IN_OUT)
-	await scale_tween.parallel().tween_property(_collision, "scale" ,target_collision_scale, 1).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_IN_OUT).finished
-	currently_fusing = false
+	scale_tween.tween_property(_sprite, "scale", target_sprite_scale, Global.FRUIT_MERGE_ANIMATION_DURATION).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_IN_OUT)
+	await scale_tween.parallel().tween_property(_collision, "scale" ,target_collision_scale, Global.FRUIT_MERGE_ANIMATION_DURATION).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_IN_OUT).finished
+	currently_merging = false
 
 
 func get_colliding_fruits() -> Array[Fruit]:
@@ -55,35 +55,35 @@ func get_colliding_fruits() -> Array[Fruit]:
 
 
 func _process(delta: float) -> void:
-	if _fruit_to_fuse_into != null:
-		_fusing_progress += delta
-		global_position = lerp(global_position, _fruit_to_fuse_into.global_position, _fusing_progress)
-		if _fusing_progress > 1.0:
-			_fruit_to_fuse_into = null
-			_fusing_progress = 1.0
+	if _fruit_to_merge_into != null:
+		_merging_progress += delta
+		global_position = lerp(global_position, _fruit_to_merge_into.global_position, _merging_progress)
+		if _merging_progress > 1.0:
+			_fruit_to_merge_into = null
+			_merging_progress = 1.0
 			queue_free()
 
 
 func _physics_process(_delta: float) -> void:
 	var colliding_fruits = get_colliding_fruits()
 	for fruit in colliding_fruits:
-		if fruit.fruit_type == fruit_type and fruit.fuse_priority > fuse_priority and !currently_fusing and !fruit.currently_fusing:
-			fuse_with(fruit)
+		if fruit.fruit_type == fruit_type and fruit.merge_priority > merge_priority and !currently_merging and !fruit.currently_merging:
+			merge_with(fruit)
 			break
 
 
 func disappear_into(other_fruit: Fruit) -> void:
-	currently_fusing = true
+	currently_merging = true
 	_sprite.z_index = -1
 	set_collision_enabled(false)
-	_fruit_to_fuse_into = other_fruit
+	_fruit_to_merge_into = other_fruit
 	get_tree().create_tween().tween_property(_sprite, "self_modulate", Color.TRANSPARENT, 1).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_IN_OUT)
 
 
-func fuse_with(other_fruit: Fruit) -> void:
-	currently_fusing = true
+func merge_with(other_fruit: Fruit) -> void:
+	currently_merging = true
 	transition_fruit_type(fruit_type + 1)
-	fuse_priority = other_fruit.fuse_priority
+	merge_priority = other_fruit.merge_priority
 	other_fruit.disappear_into(self)
 	emit_signal("merged", _fruit_resource.score_value)
 

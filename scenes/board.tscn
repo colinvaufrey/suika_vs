@@ -1,6 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cenngwt8rjvkt"]
+[gd_scene load_steps=8 format=3 uid="uid://cenngwt8rjvkt"]
 
 [ext_resource type="PackedScene" uid="uid://rnt0xm0xuqmv" path="res://scenes/fruit_holder.tscn" id="1_nq72x"]
+[ext_resource type="Script" path="res://scripts/board.gd" id="1_ro2ba"]
+[ext_resource type="Script" path="res://scripts/game_over_area.gd" id="2_uiq08"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_f6h67"]
 normal = Vector2(1, 0)
@@ -10,7 +12,13 @@ normal = Vector2(-1, 0)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_swj7b"]
 
-[node name="Container" type="StaticBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_endwr"]
+size = Vector2(638.5, 96)
+
+[node name="Board" type="StaticBody2D" node_paths=PackedStringArray("fruit_holder", "fruits_container")]
+script = ExtResource("1_ro2ba")
+fruit_holder = NodePath("FruitHolder")
+fruits_container = NodePath("Fruits")
 
 [node name="WallLeft" type="CollisionShape2D" parent="."]
 position = Vector2(-320, 3.05176e-05)
@@ -25,6 +33,7 @@ position = Vector2(0, 448)
 shape = SubResource("WorldBoundaryShape2D_swj7b")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+z_index = -5
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -42,3 +51,12 @@ position = Vector2(-312, -480)
 speed = 0.5
 
 [node name="Fruits" type="Node" parent="."]
+
+[node name="GameOverArea" type="Area2D" parent="."]
+position = Vector2(0, -496)
+script = ExtResource("2_uiq08")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameOverArea"]
+shape = SubResource("RectangleShape2D_endwr")
+
+[connection signal="fruit_overlaps" from="GameOverArea" to="." method="_on_game_over_area_fruit_overlaps"]
